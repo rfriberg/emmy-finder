@@ -2,9 +2,79 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Veg Webpack Babel</title>
+  <title>Emmy Finder</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    .select-button {
+      margin-top: 20vh;
+      width: 100px;
+      height: 80px;
+      line-height: 100px;
+      text-align: center;
+      cursor: pointer;
+      border-radius: 50%;
+      background: #f74d4d;
+      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f74d4d), color-stop(100%, #f86569));
+      background-image: -moz-gradient(linear, left top, left bottom, color-stop(0%, #f74d4d), color-stop(100%, #f86569));
+      box-shadow: 0 12px #e24f4f;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .select-button.active {
+      box-shadow: 0 3px #e24f4f;
+      -webkit-transform: translate(0px, 9px);
+      -moz-transform: translate(0px, 9px);
+      -ms-transform: translate(0px, 9px);
+      -o-transform: translate(0px, 9px);
+      -webkit-transition: 0.2s all ease-out;
+      -moz-transition: 0.2s all ease-out;
+      -ms-transition: 0.2s all ease-out;
+      -o-transition: 0.2s all ease-out;
+      transition: 0.2s all ease-out;
+    }
+
+    /* Slider */
+    .slider {
+      width: 80vw;
+      position: absolute;
+      bottom: 20vh;
+      left: 10vw;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      -webkit-appearance: none;
+      height: 15px;
+      border-radius: 5px;
+      background: #d3d3d3;
+      outline: none;
+      opacity: 1;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+    }
+
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #e24f4f;
+      cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #e24f4f;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <h1>Hi</h1>
+  <div class="center">
+    <div id="toggle" class="select-button"></div>
+    <input id="controller" type="range" class="slider" min="80" max="1000" value="80">
+  </div>
 <script type="text/javascript" src="main.js"></script></body>
 </html>
