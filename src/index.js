@@ -1,4 +1,4 @@
-import Tone from 'Tone'
+import Tone from 'tone'
 
 let isPlaying = false;
 let speed = '2n';
