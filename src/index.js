@@ -1,37 +1,43 @@
-import Tone from 'tone'
+import { Synth, Transport, context } from 'tone'
 
 let isPlaying = false;
-let speed = '2n';
+let defaultBpm = 80;
 
 var slider = document.getElementById('controller');
 var button = document.getElementById('toggle');
 
 const setup = () => {
-  //create a synth and connect it to the master output (your speakers)
-  var synth = new Tone.Synth().toMaster();
+  resetSlider();
 
-  Tone.Transport.bpm.value = 80;
-  Tone.Transport.scheduleRepeat(time => {
-    synth.triggerAttackRelease("C4", '8n', time);
-  }, '2n');
+  //create a synth and connect it to the master output (your speakers)
+  var synth = new Synth().toMaster();
+
+  Transport.bpm.value = defaultBpm;
+  Transport.scheduleRepeat(time => {
+    synth.triggerAttackRelease('C4', '32n', time);
+  }, '1n');
 
   //play a middle 'C' for the duration of an 8th note
   // synth.triggerAttackRelease("C4", "8n");
-  Tone.context.resume();
+  context.resume();
+}
+const resetSlider = () => {
+  slider.value = defaultBpm;
+  Transport.bpm.value = defaultBpm;
 }
 
 const start = () => {
-  if (isPlaying) return
+  if (isPlaying) return;
 
-  Tone.Transport.start();
+  Transport.start();
   isPlaying = true;
-  button.classList.add('active')
+  button.classList.add('active');
 }
 
 const stop = () => {
-  Tone.Transport.stop();
+  Transport.stop();
   isPlaying = false;
-  button.classList.remove('active')
+  button.classList.remove('active');
 }
 
 const toggle = () => {
@@ -41,16 +47,13 @@ const toggle = () => {
     start();
   }
 }
-const speedUp = () => {
-  Tone.Transport.bpm.value = 200;
-}
 
 // LISTENERS
 button.addEventListener('click', toggle);
 
 // Update the current slider value (each time you drag the slider handle)
 slider.oninput = function() {
-  Tone.Transport.bpm.value = this.value;
+  Transport.bpm.value = this.value;
 }
 
 // SETUP
